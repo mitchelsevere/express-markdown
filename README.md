@@ -32,10 +32,10 @@ _ex. movie application app_
         └── end.ejs
     ├── index.ejs
     └── [movies]
-        ├── [movies]-edit.ejs
-        ├── [movies]-index.ejs
-        ├── [movies]-new.ejs
-        └── [movies]-single.ejs
+        ├── [movie]-edit.ejs
+        ├── [movie]-index.ejs
+        ├── [movie]-new.ejs
+        └── [movie]-single.ejs
 ```
 
 _Everything in brackets can be named based on the application you're building_ 
@@ -52,7 +52,7 @@ NPM
 Optional
 npm install -g nodemon
 ```
-In package.json file, update the start scripts
+> In package.json file, update the start scripts
 ```
 START SCRIPTS
 "scripts": {
@@ -64,7 +64,7 @@ START SCRIPTS
 ```
 
 #### Part 2: Databases
-Run database migration and schema / seed files
+> Run database migration and schema / seed files
 ```js
 // inside the migration folder
 psql -f [migration-name].sql 
@@ -72,7 +72,7 @@ psql -f [migration-name].sql
 // inside the seeds folder
 psql -f seed.sql
 ```
-Set up config file for database queries
+> Set up config file for database queries
 ```js
 const options = {
   query: (e) => {
@@ -160,5 +160,40 @@ app.get('/', (req, res) => {
 
 |               |    GET        |     POST      |       PUT     |      DELETE   |
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
-| ' / '         |    getAll     |     addOne     |    **X**     |      **X**   |
-| ' /:id '      |    getOne     |     **X**      |   changeOne  |  deleteOne   |
+| ' / '         |    getAll     |     addOne     |    **X**     |      **X**    |
+| ' /:id '      |    getOne     |     **X**      |   changeOne  |  deleteOne    |
+
+> At the [movies] root, you can get _all_ [movies] and you can _add_ one movie but you
+> **CANNOT** edit or delete just one [movie].
+
+> At the [movies]/:id path, you can get _one_ particular [movie], you can _update_ one movie, you
+> can _delete_ one movie but you **CANNOT** post on one [movie].
+
+```js
+// 1. require dependencies
+const express = require('express');
+const controller = require('../controllers/controller');
+
+// 2. create instance of express routing
+const router = express.Router();
+
+router.get('/', (req, res) => {
+  res.render('index', {
+    message: 'I love movie!',
+    documentTitle: 'Welcome to Delorean Movies',
+  });
+});
+
+router.get('/movie', controller.index);
+router.post('/movie', controller.create);
+
+router.get('/movie/movie-new', (req, res) => {
+    res.render('movie/movie-new');
+});
+
+router.get('/movie/:id', controller.show);
+router.put('/movie/:id', controller.update);
+router.delete('/movie/:id', controller.delete);
+
+module.exports = router;
+```
