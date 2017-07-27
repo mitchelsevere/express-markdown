@@ -158,5 +158,5 @@ app.get('/', (req, res) => {
 
 |   /[movies]   |    GET        |     POST      |       PUT     |      DELETE   |
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
-| '/'           |    getAll     |     addOne    |       ###X    |      ###X     |
-| '/:id'        |    getOne     |     ###X      |   changeOne   |  deleteOne    |
+| '/'           |    getAll     |     addOne     |    **X**     |      **X**   |
+| '/:id'        |    getOne     |     **X**      |   changeOne  |  deleteOne   |
