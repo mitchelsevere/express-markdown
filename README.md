@@ -14,7 +14,7 @@
 │       ├── database.sql
 │       └── seed.sql
 ├── models
-│   └── dbqueries.js
+│   └── topic.js
 ├── node_modules
 ├── package.json
 ├── public
@@ -37,4 +37,4 @@
         └── topic-single.ejs
 ```
 
-_topic_ can be name based on whatever type of app you're building
+_topic_ can be named based on whatever type of app you're building
