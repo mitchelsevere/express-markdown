@@ -1,5 +1,6 @@
 # Express Markdown
 ### File Structure for Express MVC Application
+_ex. movie application app_
 
 ```bash
 ├── README.md
@@ -11,10 +12,10 @@
 │   ├── migrations
 │       └── migrations.sql
 │   └── seeds
-│       ├── database.sql
+│       ├── [movies].sql
 │       └── seed.sql
 ├── models
-│   └── topic.js
+│   └── [movies].js
 ├── node_modules
 ├── package.json
 ├── public
@@ -24,20 +25,20 @@
 │       ├── reset.css
 │       └── style.css
 ├── routes
-│   └── routes.js
+│   └── route.js
 └── views
     ├── partials
         ├── head.ejs (or boilerplate.ejs)
         └── end.ejs
     ├── index.ejs
-    └── topic
-        ├── topic-edit.ejs
-        ├── topic-index.ejs
-        ├── topic-new.ejs
-        └── topic-single.ejs
+    └── [movies]
+        ├── [movies]-edit.ejs
+        ├── [movies]-index.ejs
+        ├── [movies]-new.ejs
+        └── [movies]-single.ejs
 ```
 
-_topic_ can be named based on whatever type of app you're building
+_Everything in brackets can be named based on the application you're building_ 
 
 #### Part 1: Setup
 ```
@@ -84,7 +85,7 @@ const pgp = require('pg-promise')(options);
 const db = (() => {
   if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
     return pgp({
-      database: 'pizza_delorean_dev',
+      database: '[database name]',
       port: 5432,
       host: 'localhost',
     });
@@ -129,6 +130,10 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
     res.send('Hello world!');
 });
+
+// 6. import routes & tell the app where to use the routes
+const routes = require('./routes/route');
+app.use('/[movies]', routes);
 
 // 3b. error catch all (must be at the bottom of the file)
 app.get('*', (req, res) => {
