@@ -110,7 +110,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // 4. middleware
-app.use(logger('dev'));
+app.use(logger('dev')); // see every request in the console and time it took
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -138,5 +138,18 @@ app.use('/[movies]', routes);
 // 3b. error catch all (must be at the bottom of the file)
 app.get('*', (req, res) => {
     res.status(404).send('Not found');
+});
+```
+
+After your app.get('/') ... res.send('Hello world!') works, you can change it to
+render you index.ejs file.
+
+```js
+app.get('/', (req, res) => {
+  res.render('index', {
+    message: 'Hello world!',
+    documentTitle: 'DeLorean Movies!!!',
+    subTitle: 'Check out some cool info on the best movies around.',
+  });
 });
 ```
