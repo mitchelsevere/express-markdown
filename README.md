@@ -107,7 +107,7 @@ const bodyParser = require('bodyParser')
 const app = express();
 const port = process.env.PORT || 3000;
 // 4. middleware
-app.use(logger('dev));
+app.use(logger('dev)); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 // 5a. static directory
