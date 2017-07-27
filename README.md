@@ -64,7 +64,7 @@ START SCRIPTS
 
 #### Part 2: Databases
 Run database migration and schema / seed files
-```
+```js
 // inside the migration folder
 psql -f [migration-name].sql 
 
@@ -97,7 +97,7 @@ module.exports = db;
 ```
 
 #### Part 3: App.js setup
-```
+```js
 // 1a. require dependencies
 const express = require('express');
 const logger = require('morgan');
