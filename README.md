@@ -109,7 +109,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // 4. middleware
+<<<<<<< HEAD
 app.use(logger('dev'));
+=======
+app.use(logger('dev')); 
+>>>>>>> b7804fdea8c6450f357d5e55816e50799da66a99
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
