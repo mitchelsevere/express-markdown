@@ -141,8 +141,8 @@ app.get('*', (req, res) => {
 });
 ```
 
-After your app.get('/') ... res.send('Hello world!') works, you can change it to
-render you index.ejs file.
+After your ```app.get('/') ... res.send('Hello world!')``` works, you can change it to
+render you ```index.ejs``` file.
 
 ```js
 app.get('/', (req, res) => {
