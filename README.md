@@ -19,7 +19,7 @@
 ├── package.json
 ├── public
 │   ├── src
-│   │   └── main.js
+│       └── main.js
 │   └── styles
 │       ├── reset.css
 │       └── style.css
@@ -27,8 +27,8 @@
 │   └── routes.js
 └── views
     ├── partials
-    │   ├── head.ejs (or boilerplate.ejs)
-    │   └── end.ejs
+        ├── head.ejs (or boilerplate.ejs)
+        └── end.ejs
     ├── index.ejs
     └── topic
         ├── topic-edit.ejs
