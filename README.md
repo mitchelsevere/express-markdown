@@ -142,7 +142,7 @@ app.get('*', (req, res) => {
 ```
 
 After your ```app.get('/') ... res.send('Hello world!')``` works, you can change it to
-render you ```index.ejs``` file.
+render your ```index.ejs``` file.
 
 ```js
 app.get('/', (req, res) => {
@@ -153,3 +153,10 @@ app.get('/', (req, res) => {
   });
 });
 ```
+
+#### Part 4. Routes
+
+|   /[movies]   |    GET        |     POST      |       PUT     |      DELETE   |
+| ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
+| '/'           |    getAll     |     addOne    |       ###X    |      ###X     |
+| '/:id'        |    getOne     |     ###X      |   changeOne   |  deleteOne    |
