@@ -61,3 +61,70 @@ START SCRIPTS
     "debugger": "DEBUG=*:* npm run dev"
   }
 ```
+
+#### Part 2: Databases
+Run database migration and schema / seed files
+```
+// inside the migration folder
+psql -f [migration-name].sql 
+
+// inside the seeds folder
+psql -f seed.sql
+```
+Set up config file for database queries
+```
+const options = {
+  query: (e) => {
+    console.log(e.query);
+  }
+};
+
+const pgp = require('pg-promise')(options);
+
+const db = (() => {
+  if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
+    return pgp({
+      database: 'pizza_delorean_dev',
+      port: 5432,
+      host: 'localhost',
+    });
+  } else if (process.env.NODE_ENV === 'production') {
+    return pgp(process.env.DATABASE_URL);
+  }
+})();
+
+module.exports = db;
+```
+
+#### Part 3: App.js setup
+```
+// 1a. require dependencies
+const express = require('express');
+const logger = require('morgan');
+const path = require('path');
+const bodyParser = require('bodyParser')
+// 1b. initialize express and port
+const app = express();
+const port = process.env.PORT || 3000;
+// 4. middleware
+app.use(logger('dev));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+// 5a. static directory
+app.use(express.static('public'));
+// 5b. where to find views directory
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+// 2. have express instance listen on port
+app.listen(port, () => {
+    console.log('Listening on port', port);
+});
+// 3a. use res.send to test if root and server are working properly
+app.get('/', (req, res) => {
+    res.send('Hello world!');
+});
+// 3b. error catch all (must be at the bottom of the file)
+app.get('*', (req, res) => {
+    res.status(404).send('Not found');
+});
+```
