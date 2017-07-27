@@ -51,7 +51,7 @@ NPM
 Optional
 npm install -g nodemon
 ```
-
+In package.json file, update the start scripts
 ```
 START SCRIPTS
 "scripts": {
