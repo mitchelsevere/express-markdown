@@ -72,7 +72,7 @@ psql -f [migration-name].sql
 psql -f seed.sql
 ```
 Set up config file for database queries
-```
+```js
 const options = {
   query: (e) => {
     console.log(e.query);
@@ -102,27 +102,34 @@ module.exports = db;
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
-const bodyParser = require('bodyParser')
+const bodyParser = require('bodyParser');
+
 // 1b. initialize express and port
 const app = express();
 const port = process.env.PORT || 3000;
+
 // 4. middleware
 app.use(logger('dev')); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
 // 5a. static directory
 app.use(express.static('public'));
+
 // 5b. where to find views directory
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 // 2. have express instance listen on port
 app.listen(port, () => {
     console.log('Listening on port', port);
 });
+
 // 3a. use res.send to test if root and server are working properly
 app.get('/', (req, res) => {
     res.send('Hello world!');
 });
+
 // 3b. error catch all (must be at the bottom of the file)
 app.get('*', (req, res) => {
     res.status(404).send('Not found');
