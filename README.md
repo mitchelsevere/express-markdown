@@ -38,3 +38,26 @@
 ```
 
 _topic_ can be named based on whatever type of app you're building
+
+#### Part 1: Setup
+```
+NPM
+1. npm init
+2. npm install --save express
+3. npm install --save morgan
+4. npm install --save body-parser
+5. npm install --save pg-promise
+
+Optional
+npm install -g nodemon
+```
+
+```
+START SCRIPTS
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "debugger": "DEBUG=*:* npm run dev"
+  }
+```
