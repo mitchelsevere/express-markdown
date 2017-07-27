@@ -156,7 +156,9 @@ app.get('/', (req, res) => {
 
 #### Part 4. Routes
 
-|   /[movies]   |    GET        |     POST      |       PUT     |      DELETE   |
+> At localhost:3000/[movies]
+
+|               |    GET        |     POST      |       PUT     |      DELETE   |
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
-| '/'           |    getAll     |     addOne     |    **X**     |      **X**   |
-| '/:id'        |    getOne     |     **X**      |   changeOne  |  deleteOne   |
+| ' / '         |    getAll     |     addOne     |    **X**     |      **X**   |
+| ' /:id '      |    getOne     |     **X**      |   changeOne  |  deleteOne   |
